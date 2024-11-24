@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  zookeeper:
+    image: bitnami/zookeeper:latest
+    container_name: zookeeper
+    networks:
+      - bigdata
+    ports:
+      - "2181:2181"
+    volumes:
+      - ./zookeeper_data:/bitnami/zookeeper  
+
+  hadoop-namenode:
+    image: bde2020/hadoop-namenode:latest
+    container_name: hadoop-namenode
+    environment:
+      - CLUSTER_NAME=test-cluster
+    networks:
+      - bigdata
+    ports:
+      - "9870:9870"  
+    depends_on:
+      - zookeeper
+    volumes:
+      - ./hadoop_namenode_data:/hadoop/dfs/name 
+
+  hadoop-datanode:
+    image: bde2020/hadoop-datanode:latest
+    container_name: hadoop-datanode
+    networks:
+      - bigdata
+    depends_on:
+      - hadoop-namenode
+    volumes:
+      - ./hadoop_datanode_data:/hadoop/dfs/data  
+
+  hbase:
+    image: harisekhon/hbase:latest
+    container_name: hbase
+    networks:
+      - bigdata
+    ports:
+      - "16000:16000"
+      - "16010:16010"
+      - "16020:16020"
+      - "16030:16030"
+      - "8080:8080"
+      - "9095:9095"
+      - "9090:9090"  
+
+
+    depends_on:
+      - zookeeper
+      - hadoop-namenode
+
+networks:
+  bigdata:
+    driver: bridge

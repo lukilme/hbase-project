@@ -1,0 +1,4 @@
+hadoop_datanode_data
+hadoop_namenode_data
+hbase_data
+zookeeper_data
