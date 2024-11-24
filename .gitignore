@@ -4,3 +4,6 @@ hbase_data
 zookeeper_data
 .env
 __pycache__
+backup
+hadoop-config
+data
