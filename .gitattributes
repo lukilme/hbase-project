@@ -1,1 +1,3 @@
-*.sql     text diff=hivesql
+*.sql linguist-detectable=true
+*.sql linguist-language=hiveql
+*.sql text

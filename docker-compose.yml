@@ -47,12 +47,56 @@ services:
       - "16030:16030"
       - "8080:8080"
       - "9095:9095"
-      - "9090:9090"  
-
-
+      - "9090:9090"
     depends_on:
       - zookeeper
       - hadoop-namenode
+
+  hive-metastore:
+    image: bde2020/hive:latest
+    container_name: hive-metastore
+    environment:
+      - HIVE_METASTORE_HOST=hive-metastore
+      - HIVE_METASTORE_PORT=9083
+      - POSTGRES_HOST=hive-postgresql
+      - POSTGRES_DB=hive
+      - POSTGRES_USER=hive
+      - POSTGRES_PASSWORD=hive
+      - HADOOP_CONF_DIR=/opt/hive/conf
+    networks:
+      - bigdata
+    ports:
+      - "9083:9083"
+    depends_on:
+      - hadoop-namenode
+      - zookeeper
+      - hbase
+      - hive-postgresql
+
+  hive-server:
+    image: bde2020/hive:latest
+    container_name: hive-server
+    environment:
+      - SERVICE_NAME=hive-server
+      - HIVE_METASTORE_URI=thrift://hive-metastore:9083
+    networks:
+      - bigdata
+    ports:
+      - "10000:10000"
+    depends_on:
+      - hive-metastore
+
+  hive-postgresql:
+    image: postgres:latest
+    container_name: hive-postgresql
+    environment:
+      - POSTGRES_USER=hive
+      - POSTGRES_PASSWORD=hive
+      - POSTGRES_DB=hive
+    networks:
+      - bigdata
+    ports:
+      - "5432:5432"
 
 networks:
   bigdata:
