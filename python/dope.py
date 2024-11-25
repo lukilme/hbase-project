@@ -3,11 +3,14 @@ from pyhive import hive
 conn = hive.Connection(host="localhost", port=10000, username="hive")
 cursor = conn.cursor()
 
-table_name = 'sua_tabela'
+table_name = 'clientes'
+
+cursor.execute("SHOW TABLES")
+tables = cursor.fetchall()
+print(tables)
 
 cursor.execute(f"SHOW TABLES LIKE '{table_name}'")
 tables = cursor.fetchall()
-
 if not tables:
     print(f"Tabela {table_name} não existe. Criando a tabela...")
     cursor.execute(f"""

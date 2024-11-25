@@ -1,10 +1,20 @@
+Key Tech
+
+- Python
+- Java
+- Hadoop
+- HiveQL
+- HBase
+- Shell
+- Spark
+
 Project Steps 
 
 1. Set Up Environment 
 
-   - Install Hadoop and configure HDFS using the provided tutorials. 
-   - Install HBase on top of Hadoop. 
-   - Set up Zookeeper for distributed coordination. 
+   - Install Hadoop and configure HDFS using the provided tutorials. ✅
+   - Install HBase on top of Hadoop. ✅
+   - Set up Zookeeper for distributed coordination. ✅
 
 2. Data Preprocessing 
 
