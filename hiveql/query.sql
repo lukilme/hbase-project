@@ -1,3 +1,5 @@
-SELECT first_name,quantity FROM table_test;
-
-SELECT * FROM table_test;
+SHOW DATABASES;
+CREATE DATABASE IF NOT EXISTS test;
+SHOW DATABASES;
+USE test;
+SHOW TABLES;
