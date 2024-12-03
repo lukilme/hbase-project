@@ -11,6 +11,7 @@ services:
       - "16020:16020"
       - "16030:16030"
       - "9090:9090"
+      - "2181:2181"
     environment:
       - HBASE_MANAGES_ZK=true
     volumes:
@@ -34,8 +35,8 @@ services:
     image: apache/hive:4.0.1
     container_name: hive-server2
     ports:
-      - "10000:10000"  # Porta para HiveServer2
-      - "10002:10002"  # Porta para o HiveServer2 via HTTP
+      - "10000:10000" 
+      - "10002:10002" 
     environment:
       - HIVE_METASTORE_URI=thrift://hive-metastore:9083
       - SERVICE_NAME=hiveserver2
