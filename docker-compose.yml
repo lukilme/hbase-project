@@ -49,3 +49,4 @@ services:
 volumes:
   hbase_data:
   hbase_logs:
+

@@ -64,3 +64,9 @@ Evaluation Criteria
 - Insights: Are meaningful insights extracted from the dataset? 
 
 - Documentation: Is the process clearly documented? 
+
+
+
+```sh
+ mvn exec:java -Dexec.mainClass="com.hiveapi.App"
+```
