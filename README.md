@@ -69,4 +69,5 @@ Evaluation Criteria
 
 ```sh
  mvn exec:java -Dexec.mainClass="com.hiveapi.App"
+  !connect jdbc:hive2://172.28.0.3:10000
 ```
